@@ -1,0 +1,7 @@
+---
+# Install and configure vscode
+
+- name: Install Visual Studio Code
+  package:
+    name: code
+    state: present

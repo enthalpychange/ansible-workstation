@@ -1,0 +1,12 @@
+---
+
+- name: update apt cache
+  apt:
+    update_cache: yes
+  become: yes
+
+- name: update yum cache
+  yum:
+    list: updates
+    update_cache: yes
+  become: yes

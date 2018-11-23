@@ -1,0 +1,6 @@
+---
+# vars file for roles/git
+
+user_name: Enthalpy Change
+user_email: enthalpychange@users.noreply.github.com
+core_editor: vim

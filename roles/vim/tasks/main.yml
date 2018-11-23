@@ -1,0 +1,8 @@
+---
+# tasks file for roles/vim
+
+- name: Install vim
+  package:
+    name: vim
+    state: present
+  become: yes

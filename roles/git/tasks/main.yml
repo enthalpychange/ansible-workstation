@@ -1,0 +1,26 @@
+---
+# tasks file for roles/git
+
+- name: Install git
+  package:
+    name: git
+    state: present
+  become: yes
+
+- name: Configure git username
+  git_config:
+    name: user.name
+    scope: global
+    value: "{{ user_name }}"
+
+- name: Configure git email
+  git_config:
+    name: user.email
+    scope: global
+    value: "{{ user_email }}"
+
+- name: Configure git email
+  git_config:
+    name: core.editor
+    scope: global
+    value: "{{ core_editor }}"

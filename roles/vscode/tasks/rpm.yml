@@ -13,5 +13,8 @@
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
     gpgcheck: yes
     enabled: yes
-  notify:
-    - update yum cache
+    register: repository
+
+- name: Make yum cache
+  command: yum makecache
+  when: repository.changed

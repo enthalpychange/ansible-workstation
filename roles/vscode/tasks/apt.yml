@@ -15,5 +15,4 @@
     repo: deb https://packages.microsoft.com/repos/vscode stable main
     state: present
     filename: vscode
-  notify:
-    - update apt cache
+    update_cache: yes

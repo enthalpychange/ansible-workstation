@@ -1,8 +1,10 @@
 # Ansible-Workstation
 
 ## Setup
-git clone this repo
-source setup.sh
+Run the bootstrap script to install requirements.
 
-## Run
-ansible-playbook -K main.yml
+- Using wget: `source <(wget -O - https://raw.githubusercontent.com/enthalpychange/ansible-workstation/master/bootstrap)`
+- Using curl: `source <(curl -L https://raw.githubusercontent.com/enthalpychange/ansible-workstation/master/bootstrap)`
+
+## Provision
+Run the playbook: `ansible-playbook -K main.yml`

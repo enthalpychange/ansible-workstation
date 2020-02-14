@@ -12,12 +12,14 @@
     name: user.name
     scope: global
     value: "{{ user_name }}"
+  when: '"enthalpy" in ansible_env.USER'
 
 - name: Configure git email
   git_config:
     name: user.email
     scope: global
     value: "{{ user_email }}"
+  when: '"enthalpy" in ansible_env.USER'
 
 - name: Configure git email
   git_config:

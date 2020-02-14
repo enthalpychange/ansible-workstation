@@ -5,3 +5,9 @@
   package:
     name: code
     state: present
+
+- name: Install extensions
+  script: install_extensions.py ms-azuretools.vscode-docker ms-python.python vscoss.vscode-ansible
+  register: install_extensions
+  changed_when: install_extensions.stdout
+  become: no

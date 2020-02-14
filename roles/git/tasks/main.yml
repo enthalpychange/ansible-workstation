@@ -11,7 +11,7 @@
     name: user.name
     scope: global
     value: "{{ user_name }}"
-  when: '"enthalpy" in ansible_env.USER'
+  when: '"enthalpy" in current_user'
   become: no
 
 - name: Configure git email
@@ -19,7 +19,7 @@
     name: user.email
     scope: global
     value: "{{ user_email }}"
-  when: '"enthalpy" in ansible_env.USER'
+  when: '"enthalpy" in current_user'
   become: no
 
 - name: Configure git editor

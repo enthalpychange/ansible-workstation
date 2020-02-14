@@ -5,4 +5,3 @@
   package:
     name: vim
     state: present
-  become: yes

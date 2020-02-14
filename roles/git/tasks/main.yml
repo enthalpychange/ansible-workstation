@@ -5,7 +5,6 @@
   package:
     name: git
     state: present
-  become: yes
 
 - name: Configure git username
   git_config:
@@ -13,6 +12,7 @@
     scope: global
     value: "{{ user_name }}"
   when: '"enthalpy" in ansible_env.USER'
+  become: no
 
 - name: Configure git email
   git_config:
@@ -20,9 +20,11 @@
     scope: global
     value: "{{ user_email }}"
   when: '"enthalpy" in ansible_env.USER'
+  become: no
 
-- name: Configure git email
+- name: Configure git editor
   git_config:
     name: core.editor
     scope: global
     value: "{{ core_editor }}"
+  become: no

@@ -1,0 +1,22 @@
+---
+- name: Install zsh
+  package:
+    name: zsh
+    state: present
+
+- name: Set shell to zsh
+  user:
+    name: "{{ current_user }}"
+    shell: /bin/zsh
+
+- name: Install oh-my-zsh
+  git:
+    repo: 'https://github.com/ohmyzsh/ohmyzsh.git'
+    dest: "{{ current_user_home }}/.oh-my-zsh"
+  become: no
+
+- name: Set up .zshrc
+  copy:
+    src: zshrc.sh
+    dest: "{{ current_user_home }}/.zshrc"
+  become: no

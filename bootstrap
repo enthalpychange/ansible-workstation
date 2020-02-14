@@ -1,7 +1,6 @@
 #!/bin/bash
 
 ENV_DIR=~/.env
-CODE_DIR=~/code
 ANSIBLE_ENV=$ENV_DIR/ansible
 
 # Install package requirements
@@ -14,19 +13,13 @@ for requirement in "${requirements[@]}"; do
     fi
 done
 
-# Create directories
-mkdir -p $ENV_DIR
-mkdir -p $CODE_DIR
-cd $CODE_DIR
-if [ ! -d ansible-workstation ]; then
-    git clone https://github.com/enthalpychange/ansible-workstation.git
-    cd ansible-workstation
-else
-    cd ansible-workstation
-    git pull https://github.com/enthalpychange/ansible-workstation.git
-fi
+# Clone repository
+cd $(mktemp -d)
+git clone https://github.com/enthalpychange/ansible-workstation.git
+cd ansible-workstation
 
 # Activate environment and install Python packages
+mkdir -p $ENV_DIR
 if [ ! -e $ANSIBLE_ENV ]; then
     python3 -m venv --system-site-packages $ANSIBLE_ENV
 fi

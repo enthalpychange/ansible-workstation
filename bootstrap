@@ -19,11 +19,11 @@ mkdir -p $ENV_DIR
 mkdir -p $CODE_DIR
 cd $CODE_DIR
 if [ ! -d ansible-workstation ]; then
-    git clone https://github.com/enthalpychange/ansible-workstation.git
+    git clone git@github.com:enthalpychange/ansible-workstation.git
     cd ansible-workstation
 else
     cd ansible-workstation
-    git pull https://github.com/enthalpychange/ansible-workstation.git
+    git pull git@github.com:enthalpychange/ansible-workstation.git
 fi
 
 # Activate environment and install Python packages

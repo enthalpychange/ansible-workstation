@@ -3,16 +3,8 @@
   become: yes
 
   pre_tasks:
-  - name: Get current user
-    shell:
-      cmd: who | awk '/:0/{print $1}'
-    changed_when: false
-    register: current_user
-  
-  - name: Set custom facts
-    set_fact:
-      current_user: "{{ current_user.stdout }}"
-      current_user_home: "/home/{{ current_user.stdout }}"
+  - name: Gather custom facts
+    include: custom_facts.yml
 
   roles:
   - vmwaretools

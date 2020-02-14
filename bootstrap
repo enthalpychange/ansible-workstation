@@ -7,7 +7,7 @@ ANSIBLE_ENV=$ENV_DIR/ansible
 # Install package requirements
 requirements=(python3-venv python3-apt git)
 for requirement in "${requirements[@]}"; do
-    if ! apt list --installed 2>/dev/null | grep -q $requirement; then
+    if ! apt list --installed 2>/dev/null | grep -q ^$requirement/; then
         sudo apt-get install -y $requirement
     else
         echo "$requirement already installed"

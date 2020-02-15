@@ -12,7 +12,7 @@
   git:
     repo: 'https://github.com/python/cpython.git'
     dest: "{{ temp_path }}"
-    version: "{{ full_version }}"
+    version: "v{{ full_version }}"
   when: python_check.stdout != full_version or python_check.rc != 0
   register: python_source
 

@@ -51,3 +51,8 @@
     - { src: "python{{ version }}", dest: "python{{ major }}" }
     - { src: "pip{{ version }}", dest: "pip{{ version }}" }
     - { src: "pip{{ version }}", dest: "pip{{ major }}" }
+
+- name: Clean up temp files
+  file:
+    path: "{{ temp_path }}"
+    state: absent

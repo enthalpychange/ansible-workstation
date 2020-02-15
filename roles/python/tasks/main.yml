@@ -1,0 +1,49 @@
+---
+- include: apt.yml
+  when: ansible_os_family == "Debian"
+
+- name: Check for Python installation
+  shell: "{{ python_path }}/bin/python{{ version }} --version | awk '{print $2}'"
+  changed_when: false
+  ignore_errors: true
+  register: python_check
+
+- name: Download Python source
+  git:
+    repo: 'https://github.com/python/cpython.git'
+    dest: "{{ temp_path }}"
+    version: "{{ full_version }}"
+  when: python_check.stdout != full_version or python_check.rc != 0
+  register: python_source
+
+- name: Configure Python
+  command: "./configure --prefix={{ python_path }}"
+  args:
+    chdir: "{{ temp_path }}"
+  when: python_source.changed
+  register: python_configure
+
+- name: Compile Python
+  command: "make -j{{ ansible_processor_vcpus - 1 }}"
+  args:
+    chdir: "{{ temp_path }}"
+  when: python_configure.changed
+  register: python_compile
+
+- name: Install Python
+  command: "make altinstall"
+  args:
+    chdir: "{{ temp_path }}"
+  when: python_compile.changed
+  register: python_install
+
+- name: Create symlinks in PATH
+  file:
+    src: "{{ python_path }}/bin/{{ item.src }}"
+    dest: "/usr/local/bin/{{ item.dest }}"
+    state: link
+  loop:
+    - { src: "python{{ version }}", dest: "python{{ version }}" }
+    - { src: "python{{ version }}", dest: "python{{ major }}" }
+    - { src: "pip{{ version }}", dest: "pip{{ version }}" }
+    - { src: "pip{{ version }}", dest: "pip{{ major }}" }

@@ -1,0 +1,8 @@
+---
+major: 3
+minor: 8
+micro: 1
+version: "{{ major }}.{{ minor }}"
+full_version: "{{ major }}.{{ minor }}.{{ micro }}"
+python_path: "/usr/local/python-v{{ full_version }}"
+temp_path: "/tmp/python-{{ full_version }}"

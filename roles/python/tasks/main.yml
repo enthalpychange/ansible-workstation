@@ -2,33 +2,37 @@
 - include: apt.yml
   when: ansible_os_family == "Debian"
 
-- name: Check for Python installation
-  shell: "{{ python_path }}/bin/python{{ version }} --version | awk '{print $2}'"
-  changed_when: false
-  ignore_errors: true
-  register: python_check
+- block:
 
-- name: Download Python source
-  git:
-    repo: 'https://github.com/python/cpython.git'
-    dest: "{{ temp_path }}"
-    version: "v{{ full_version }}"
-  when: python_check.stdout != full_version or python_check.rc != 0
-  register: python_source
+  - name: Check for Python installation
+    shell: "{{ python_path }}/bin/python{{ version }} --version | awk '{print $2}'"
+    changed_when: false
+    ignore_errors: true
+    register: python_check
 
-- name: Configure Python
-  command: "./configure --prefix={{ python_path }}"
-  args:
-    chdir: "{{ temp_path }}"
-  when: python_source.changed
-  register: python_configure
+  - name: Download Python source
+    git:
+      repo: 'https://github.com/python/cpython.git'
+      dest: "{{ temp_path }}"
+      version: "v{{ full_version }}"
+    when: python_check.stdout != full_version or python_check.rc != 0
+    register: python_source
 
-- name: Compile Python
-  command: "make -j{{ ansible_processor_vcpus - 1 }}"
-  args:
-    chdir: "{{ temp_path }}"
-  when: python_configure.changed
-  register: python_compile
+  - name: Configure Python
+    command: "./configure --prefix={{ python_path }}"
+    args:
+      chdir: "{{ temp_path }}"
+    when: python_source.changed
+    register: python_configure
+
+  - name: Compile Python
+    command: "make -j{{ ansible_processor_vcpus - 1 }}"
+    args:
+      chdir: "{{ temp_path }}"
+    when: python_configure.changed
+    register: python_compile
+
+  become: no
 
 - name: Install Python
   command: "make altinstall"

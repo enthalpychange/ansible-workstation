@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Prompt for password
+sudo echo ""
+
 # Install package requirements
 requirements=(python3-venv python3-apt git)
 for requirement in "${requirements[@]}"; do
@@ -17,9 +20,7 @@ cd ansible-workstation
 
 # Activate environment and install Python packages
 ANSIBLE_ENV=$(mktemp -d)
-if [ ! -e $ANSIBLE_ENV ]; then
-    python3 -m venv --system-site-packages $ANSIBLE_ENV
-fi
+python3 -m venv --system-site-packages $ANSIBLE_ENV
 
 if [[ $VIRTUAL_ENV != $ANSIBLE_ENV ]]; then
     echo "Activating environment"
@@ -46,12 +47,8 @@ echo [localhost] > $ANSIBLE_INVENTORY
 echo 127.0.0.1 ansible_connection=local ansible_python_interpreter=$ANSIBLE_ENV/bin/python > $ANSIBLE_INVENTORY
 
 # Temporarily enable passwordless sudo for provisioning
-sudo chmod 755 /etc/sudoers.d
-sudo cat > /etc/sudoers.d/passwordless-sudo <<EOF
-%sudo ALL=(ALL:ALL) NOPASSWD:ALL
-EOF
+echo -n "%sudo ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/passwordless-sudo
 sudo chmod 440 /etc/sudoers.d/passwordless-sudo
-sudo chmod 555 /etc/sudoers.d
 
 # Provision
 ansible-playbook main.yml

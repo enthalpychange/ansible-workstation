@@ -56,3 +56,20 @@
   file:
     path: "{{ temp_path }}"
     state: absent
+
+- name: Create virtualenv directory
+  file:
+    path: "{{ current_user_home }}/.env"
+    owner: "{{ current_user }}"
+    group: "{{ current_user }}"
+    mode: '755'
+    state: directory
+  become: no
+
+- name: Install Pipenv
+  pip:
+    name: pipenv
+    executable: "{{ python_path }}/bin/pip{{ version }}"
+    extra_args: --user
+    state: latest
+  become: no

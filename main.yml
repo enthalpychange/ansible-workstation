@@ -14,3 +14,9 @@
   - docker
   - shell
   - python
+
+  post_tasks:
+  - name: Remove passwordless sudo
+    file:
+      path: /etc/sudoers.d/passwordless-sudo
+      state: absent

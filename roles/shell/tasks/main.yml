@@ -8,6 +8,8 @@
   user:
     name: "{{ current_user }}"
     shell: /bin/zsh
+  notify:
+    - reboot
 
 - name: Install oh-my-zsh
   git:

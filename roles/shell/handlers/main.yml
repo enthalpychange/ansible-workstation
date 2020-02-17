@@ -1,0 +1,4 @@
+---
+- name: reboot
+  set_fact:
+    reboot_required: true

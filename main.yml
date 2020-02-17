@@ -20,3 +20,7 @@
     file:
       path: /etc/sudoers.d/passwordless-sudo
       state: absent
+  
+  - name: Reboot
+    shell: shutdown -r 30
+    when: reboot_required

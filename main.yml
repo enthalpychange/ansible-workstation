@@ -14,6 +14,7 @@
   - docker
   - shell
   - python
+  - virtualbox
 
   post_tasks:
   - name: Remove passwordless sudo

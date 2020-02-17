@@ -1,0 +1,8 @@
+---
+- include: apt.yml
+  when: ansible_os_family == "Debian"
+
+- name: Install VirtualBox
+  package:
+    name: virtualbox-6.1
+    state: present

@@ -48,10 +48,6 @@ if [[ $VIRTUAL_ENV == $ANSIBLE_ENV ]]; then
     done
 fi
 
-export ANSIBLE_INVENTORY=$PWD/hosts
-echo [localhost] > $ANSIBLE_INVENTORY
-echo 127.0.0.1 ansible_connection=local ansible_python_interpreter=$ANSIBLE_ENV/bin/python > $ANSIBLE_INVENTORY
-
 # Temporarily enable passwordless sudo for provisioning
 echo -n "%sudo ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/passwordless-sudo
 sudo chmod 440 /etc/sudoers.d/passwordless-sudo

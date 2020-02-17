@@ -1,6 +1,6 @@
 ---
 # vars file for roles/git
 
-user_name: "Enthalpy Change"
-user_email: "enthalpychange@users.noreply.github.com"
+user_name: "{{ current_user | lower | replace('change', '') | title }} Change"
+user_email: "{{ current_user | lower | replace('change', '') }}change@users.noreply.github.com"
 core_editor: vim

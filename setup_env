@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Setup Pipenv virtual environment
+# Use system provided Python 3 with site packages
+
+~/.local/bin/pipenv --python=/usr/bin/python3 --site-packages
+~/.local/bin/pipenv install

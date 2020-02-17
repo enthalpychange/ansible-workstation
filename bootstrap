@@ -18,6 +18,12 @@ cd $(mktemp -d)
 git clone https://github.com/enthalpychange/ansible-workstation.git
 cd ansible-workstation
 
+# Fetch dev branch
+if [[ "$1" == "dev" ]]; then
+    git fetch origin develop:develop
+    git checkout develop
+fi
+
 # Activate environment and install Python packages
 ANSIBLE_ENV=$(mktemp -d)
 python3 -m venv --system-site-packages $ANSIBLE_ENV

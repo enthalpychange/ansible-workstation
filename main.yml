@@ -23,6 +23,6 @@
       state: absent
   
   - name: Reboot
-    reboot:
-      pre_reboot_delay: 60
+    shell:
+      cmd: shutdown -r 1
     when: reboot_required

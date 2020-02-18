@@ -15,6 +15,7 @@
   - shell
   - python
   - virtualbox
+  - vagrant
 
   post_tasks:
   - name: Remove passwordless sudo

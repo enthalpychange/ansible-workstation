@@ -11,3 +11,9 @@
   register: install_extensions
   changed_when: install_extensions.stdout
   become: no
+
+- name: Configure settings.json
+  template:
+    src: settings.json
+    dest: "{{ current_user_home }}/.config/Code/User/settings.json"
+  become: no

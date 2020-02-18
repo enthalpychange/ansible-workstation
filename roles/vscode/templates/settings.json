@@ -1,0 +1,7 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false
+}

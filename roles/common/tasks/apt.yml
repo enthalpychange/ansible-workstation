@@ -1,0 +1,16 @@
+---
+
+- name: Install CA certificates
+  apt:
+    name: ca-certificates
+    state: present
+
+- name: Install apt HTTPS support
+  apt:
+    name: apt-transport-https
+    state: present
+
+- name: Install software-properties-common
+  apt:
+    name: software-properties-common
+    state: present

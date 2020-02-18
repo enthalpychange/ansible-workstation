@@ -1,10 +1,5 @@
 ---
 
-- name: Install apt HTTPS support
-  package:
-    name: apt-transport-https
-    state: present
-
 - name: Add Oracle GPG key
   apt_key:
     url: https://www.virtualbox.org/download/oracle_vbox_2016.asc

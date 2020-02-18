@@ -7,6 +7,7 @@
     include: custom_facts.yml
 
   roles:
+  - common
   - vmwaretools
   - vim
   - git

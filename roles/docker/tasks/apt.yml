@@ -8,14 +8,6 @@
     - docker.io
     state: absent
 
-- name: Install apt HTTPS support
-  yum:
-    name: 
-    - apt-transport-https
-    - ca-certificates
-    - software-properties-common
-    state: present
-
 - name: Docker GPG key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg

@@ -1,10 +1,5 @@
 ---
 
-- name: Install apt HTTPS support
-  package:
-    name: apt-transport-https
-    state: present
-
 - name: Add Microsoft GPG key
   apt_key:
     url: https://packages.microsoft.com/keys/microsoft.asc

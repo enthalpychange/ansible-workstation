@@ -3,5 +3,6 @@
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
     "explorer.confirmDragAndDrop": false,
-    "explorer.confirmDelete": false
+    "explorer.confirmDelete": false,
+    "editor.acceptSuggestionOnEnter": "off"
 }

@@ -1,0 +1,20 @@
+---
+- name: Check Packer version
+  shell: "{{ install_path }}/packer --version"
+  register: packer_check
+  changed_when: false
+  ignore_errors: true
+
+- name: Download and extract Packer
+  unarchive:
+    src: "https://releases.hashicorp.com/packer/{{ version }}/packer_{{ version }}_linux_amd64.zip"
+    dest: "{{ install_path }}"
+    remote_src: true
+  when: packer_check.stdout != version or packer_check.rc != 0
+
+- name: Set packer permissions
+  file:
+    path: "{{ install_path }}/packer"
+    owner: root
+    group: root
+    mode: '777'

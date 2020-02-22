@@ -3,3 +3,22 @@
 
 - include: apt.yml
   when: ansible_os_family == "Debian"
+
+- name: Check Docker Compose version
+  shell: docker-compose --version | awk '{print $3}' | sed 's/,//g'
+  register: compose_check
+  changed_when: false
+  ignore_errors: true
+
+- name: Install Docker Compose
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/{{ version }}/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
+    dest: "{{ install_path }}/docker-compose"
+  when: compose_check.rc != 0 or compose_check.stdout != version
+
+- name: Set docker-compose permissions
+  file:
+    path: "{{ install_path }}/docker-compose"
+    owner: root
+    group: root
+    mode: '755'

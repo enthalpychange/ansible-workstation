@@ -17,4 +17,4 @@
     path: "{{ install_path }}/packer"
     owner: root
     group: root
-    mode: '777'
+    mode: '755'

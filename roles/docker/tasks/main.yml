@@ -22,3 +22,14 @@
     owner: root
     group: root
     mode: '755'
+
+- name: Create docker group
+  group:
+    name: docker
+    state: present
+
+- name: Add user to docker group
+  user:
+    name: "{{ current_user }}"
+    groups: docker
+    append: true

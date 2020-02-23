@@ -4,5 +4,6 @@
     "telemetry.enableTelemetry": false,
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
-    "editor.acceptSuggestionOnEnter": "off"
+    "editor.acceptSuggestionOnEnter": "off",
+    "explorer.compactFolders": false
 }

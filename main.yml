@@ -18,6 +18,7 @@
   - virtualbox
   - vagrant
   - packer
+  - pgadmin
 
   post_tasks:
   - name: Remove passwordless sudo

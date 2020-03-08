@@ -1,0 +1,17 @@
+---
+- name: Postgres GPG key
+  apt_key:
+    url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+    state: present
+
+- name: Add Postgres repository
+  apt_repository:
+    repo: "deb http://apt.postgresql.org/pub/repos/apt {{ ansible_distribution_release }}-pgdg main"
+    state: present
+    filename: postgres
+    update_cache: yes
+
+- name: Install pgAdmin
+  apt:
+    name: pgadmin4
+    state: present

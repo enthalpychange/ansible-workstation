@@ -7,6 +7,7 @@
   - name: Check for Python installation
     shell: "{{ python_path }}/bin/python{{ version }} --version | awk '{print $2}'"
     changed_when: false
+    check_mode: no
     ignore_errors: true
     register: python_check
 

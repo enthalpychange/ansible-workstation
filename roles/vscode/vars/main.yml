@@ -1,0 +1,5 @@
+---
+extensions:
+  - ms-python.python
+  - vscoss.vscode-ansible
+  - ms-azuretools.vscode-docker

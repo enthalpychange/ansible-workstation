@@ -6,10 +6,21 @@
     name: code
     state: present
 
+- name: Get installed extensions
+  script: get_extensions.py
+  register: get_extensions
+  check_mode: no
+  changed_when: no
+  become: no
+
+- name: Set desired extension fact
+  set_fact:
+    desired_extensions: "{{ extensions | sort() | join(' ') }}"
+
 - name: Install extensions
-  script: install_extensions.py ms-azuretools.vscode-docker ms-python.python vscoss.vscode-ansible
+  script: install_extensions.py 
   register: install_extensions
-  changed_when: install_extensions.stdout
+  when: get_extensions.stdout != desired_extensions
   become: no
 
 - name: Configure settings.json

@@ -3,6 +3,7 @@
   shell:
     cmd: who | awk '/:0/{print $1}'
   changed_when: false
+  check_mode: no
   register: current_user
 
 - name: Gather custom facts

@@ -3,6 +3,7 @@
   shell: "{{ install_path }}/packer --version"
   register: packer_check
   changed_when: false
+  check_mode: no
   ignore_errors: true
 
 - name: Download and extract Packer

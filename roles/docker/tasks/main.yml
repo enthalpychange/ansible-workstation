@@ -7,6 +7,7 @@
 - name: Check Docker Compose version
   shell: docker-compose --version | awk '{print $3}' | sed 's/,//g'
   register: compose_check
+  check_mode: no
   changed_when: false
   ignore_errors: true
 

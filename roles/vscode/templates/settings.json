@@ -25,5 +25,15 @@
     "[css]": {
         "editor.insertSpaces": true,
         "editor.tabSize": 2
+    },
+    "[yaml]": {
+
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        },
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2
     }
 }

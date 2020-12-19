@@ -1,6 +1,6 @@
 ---
 major: 3
-minor: 8
+minor: 9
 micro: 1
 version: "{{ major }}.{{ minor }}"
 full_version: "{{ major }}.{{ minor }}.{{ micro }}"
